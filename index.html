@@ -181,21 +181,21 @@
 </style>
 <body onselectstart="return false;">
     <div class="wrap" id="wrap">
-        <!-- photo负责平移、旋转-->
-        <div class="photo photo_front" onclick="turn(this)" id="photo_{{index}}">
-            <!--photo-wrap负责翻转-->
-            <div class="photo-wrap">
-                <div class="side side-front">
-                    <p class="image">
-                        <img src="photo/{{img}}" alt="">
-                    </p>
-                    <p class="caption">{{caption}}</p>
-                </div>
-                <div class="side side-back">
-                    <p class="desc">{{desc}}</p>
-                </div>
-            </div>
-        </div>
+        <!--&lt;!&ndash; photo负责平移、旋转&ndash;&gt;-->
+        <!--<div class="photo photo_front" onclick="turn(this)" id="photo_{{index}}">-->
+            <!--&lt;!&ndash;photo-wrap负责翻转&ndash;&gt;-->
+            <!--<div class="photo-wrap">-->
+                <!--<div class="side side-front">-->
+                    <!--<p class="image">-->
+                        <!--<img src="photo/{{img}}" alt="">-->
+                    <!--</p>-->
+                    <!--<p class="caption">{{caption}}</p>-->
+                <!--</div>-->
+                <!--<div class="side side-back">-->
+                    <!--<p class="desc">{{desc}}</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </body>
 <script type="text/javascript" src="photo/data.js"></script>
@@ -231,10 +231,28 @@
         }
         el.className = className;
     }
+    function getTemplate() {
+        return ' <!-- photo负责平移、旋转-->\n' +
+            '        <div class="photo photo_front" onclick="turn(this)" id="photo_{{index}}">\n' +
+            '            <!--photo-wrap负责翻转-->\n' +
+            '            <div class="photo-wrap">\n' +
+            '                <div class="side side-front">\n' +
+            '                    <p class="image">\n' +
+            '                        <img src="photo/{{img}}" alt="">\n' +
+            '                    </p>\n' +
+            '                    <p class="caption">{{caption}}</p>\n' +
+            '                </div>\n' +
+            '                <div class="side side-back">\n' +
+            '                    <p class="desc">{{desc}}</p>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>';
+    }
     // 输出所有海报
     var data = data;
     function addPhotos() {
-        var template = g('#wrap').innerHTML;
+        // var template = g('#wrap').innerHTML;
+        var template = getTemplate();
         var html = [];
         var nav = [];
         for( s in data) {
